@@ -1,0 +1,41 @@
+count_of_chars = 256
+
+
+def uniquechars(str, n): 
+
+	count = [0] * count_of_chars 
+
+	for i in range(n): 
+		count[ord(str[i])] += 1
+	
+	distinct = 0
+	for i in range(count_of_chars): 
+		if (count[i] != 0): 
+			distinct += 1	
+	
+	return distinct 
+
+def smallesteSubstr(str): 
+
+	n = len(str) 
+
+	distinct = uniquechars(str, n) 
+	ml = n	 
+
+	for i in range(n): 
+		for j in range(n): 
+			subs = str[i:j] 
+			subs_lenght = len(subs) 
+			sub_distinct_char = uniquechars(subs,subs_lenght) 
+
+			if (subs_lenght < ml and
+				distinct == sub_distinct_char): 
+				ml = subs_lenght 
+
+	return ml 
+
+ 
+
+str = input()
+l = smallesteSubstr(str); 
+print( "The smallest substring which consists of maximum distinct charactersis of length", l) 
